@@ -1,0 +1,48 @@
+model:
+  class_path: models.lit_model.LitModel
+  init_args:
+    hidden_size: 32
+
+data:
+  class_path: data.datamodule.MNISTDataModule
+  init_args:
+    batch_size: 64
+    fold_idx: 0
+    num_folds: 3
+
+trainer:
+  max_epochs: 3
+  accelerator: cpu
+
+tuning_engine:
+  exp_dir: experiments/exp1
+  log_dir: logs/exp1
+  monitor: val_loss
+  n_trials: 2
+  study_name: test
+  overwrite: False
+
+  sampler:
+    class_path: optuna.samplers.TPESampler
+    init_args:
+      n_startup_trials: 15
+      seed: 1
+      multivariate: True
+
+  pruner:
+    class_path: optuna.pruners.HyperbandPruner
+    init_args:
+      min_resource: 10
+      reduction_factor: 3
+
+  search_space:
+    model:
+      learning_rate:
+        method: loguniform
+        low: 1e-5
+        high: 1e-1
+
+      hidden_size:
+        method: categorical
+        dtype: int
+        choices: [16, 32, 64]

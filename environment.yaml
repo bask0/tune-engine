@@ -1,0 +1,52 @@
+name: torch_routing
+channels:
+  - pytorch
+  - pyg
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.11
+  - pytorch
+  - torchvision
+  - torchaudio
+  - pytorch-sparse
+  - torch-geometric
+  - lightning
+  - numpy
+  - scikit-learn
+  - optuna
+  - optuna-integration
+  - pandas
+  - xarray
+  - dask
+  - netcdf4
+  - zarr
+  - geopandas
+  - richdem
+  - matplotlib
+  - seaborn
+  - cartopy
+  - plotly
+  - contextily
+  - jupyterlab
+  - nodejs
+  - pymysql
+  - pvlib-python
+  - imagemagick
+  # Optional dependencies, often missing from conda channels:
+  # These you should install with pip after environment creation:
+  - pip
+  - pip:
+    - dask-labextension
+    - pyreadr
+    - tensorboard
+    - flake8
+    - kaleido
+    - jsonargparse[signatures]>=4.18.0
+    - omegaconf
+    - jupyterlab-optuna
+    - einops
+    - ipywidgets
+    - IProgress
+    - rioxarray
+    - xarray-spatial

@@ -1,0 +1,7 @@
+seed_everything: 99
+trainer:
+  num_nodes: 1
+  callbacks:
+    class_path: lightning.pytorch.callbacks.TQDMProgressBar
+    init_args:
+      refresh_rate: 1

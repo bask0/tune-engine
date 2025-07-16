@@ -1,0 +1,77 @@
+# === Python general ===
+__pycache__/
+*.py[cod]
+*.pyo
+*.so
+*.egg
+*.egg-info/
+*.pyd
+.Python
+.env
+.venv
+env/
+venv/
+ENV/
+pip-wheel-metadata/
+*.log
+
+# === Jupyter Notebook checkpoints ===
+.ipynb_checkpoints/
+
+# === PyTorch Lightning ===
+logs/
+**/logs
+**/logs/
+checkpoints/
+**/checkpoints/
+MNIST/
+
+# === Optuna DB files ===
+**/optuna.db
+
+# === Config files and experiment artifacts ===
+*.yaml~
+*.bak
+*.tmp
+*.old
+**/best_config.yaml
+**/trial_*/  # Tuning folders
+**/fold_*/   # XVal folders
+
+# === VSCode and IDEs ===
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# === OS-generated ===
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# === macOS Spotlight ===
+.AppleDouble
+.LSOverride
+
+# === MyPy & Pyright ===
+.mypy_cache/
+.pyright/
+
+# === Tests and coverage ===
+.tox/
+.coverage
+htmlcov/
+.cache/
+pytest_cache/
+
+# === Build artifacts ===
+build/
+dist/
+*.egg-info/
+*.manifest
+*.spec
+
+# === Misc ===
+*.sqlite3
+*.db
+*.log
