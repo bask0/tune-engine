@@ -1,4 +1,4 @@
-name: torch_routing
+name: tuning_engine
 channels:
   - pytorch
   - pyg
