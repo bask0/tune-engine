@@ -85,18 +85,27 @@ This will:
 
 ```bash
 .
-├── tune.py                 # Entry point
+├── tune.py                # Entry point
 ├── engine/
 │   ├── cli_interface.py   # Custom LightningCLI wrapper
 │   └── tuning_engine.py   # Core tuning logic
-├── experiments/           # YAML configurations
-│   └── ...                # base + experiment configs
+├── experiments/           # Experiment configuration
+│   ├── base_config.yaml   # Overarching base config
+│   ├── exp0               # An experiment
+│   │   ├── logs/          # (symlinked) logs (`log_dir`)
+│   │   └── config.yaml    # Experiment config
 ├── models/                # Lightning models
 │   └── ...                # Add custom models
 ├── data/                  # Lightning datamodule
 │   └── ...                # Add custom datamodule
-├── logs/                  # (symlinked) results, tuning trials, etc.
 └── environment.yml        # Full conda + pip setup
+log_dir
+├── tune                   # Hyperparameter tuning log dir
+│   ├── trial_000          # Triel 0 directory.
+│   └── ...                # Up to trial `tune_engine.n_trials`
+├── xval                   # Cross validation log dir
+│   ├── fold_000           # Fold 0 directory.
+──  └── ...                # Up to fold `data.num_folds`
 ```
 
 ---
