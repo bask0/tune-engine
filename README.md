@@ -29,9 +29,15 @@ This project supports:
 
 ---
 
-## Design philosophy
+## 🧩 Using this project as a blueprint
 
-With this framework, custom models (`models/`) and data pipelines (`data/`) – building on PyTorch Lightning — can be implemented and tuned. The framework code can be found here `engine/`.
+This repository is designed to serve as a **blueprint** for hyperparameter tuning pipelines. You are expected to:
+
+- Add your own models under `models/`
+- Implement a custom datamodule under `data/`
+- Define your tuning/search configurations under `experiments/`
+
+To get started **and retain compatibility with updates**, please fork the repository.
 
 ---
 
