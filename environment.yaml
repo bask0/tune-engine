@@ -33,8 +33,6 @@ dependencies:
   - pymysql
   - pvlib-python
   - imagemagick
-  # Optional dependencies, often missing from conda channels:
-  # These you should install with pip after environment creation:
   - pip
   - pip:
     - dask-labextension
