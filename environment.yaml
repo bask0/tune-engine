@@ -50,3 +50,4 @@ dependencies:
     - IProgress
     - rioxarray
     - xarray-spatial
+    - -e .[dev]
