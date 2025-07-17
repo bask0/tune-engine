@@ -1,0 +1,51 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tune-engine"  # This is the installable package name on PyPI (can have hyphen)
+version = "0.1.0"
+description = "A flexible framework for hyperparameter tuning and cross-validation using PyTorch Lightning and Optuna"
+authors = [
+  { name = "Basil Kraft", email = "basil.kraft@env.ethz.ch" }
+]
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.11"
+
+dependencies = [
+  "pytorch-lightning>=2.0",
+  "optuna>=4.0",
+  "torch>=2.0",
+  "jsonargparse[signatures]",
+  "omegaconf",
+  "tensorboard",
+]
+
+[project.optional-dependencies]
+dev = [
+  # Testing
+  "pytest",
+  "pytest-cov",
+
+  # Code formatting and linting
+  "black",
+  "isort",
+  "flake8",
+  "flake8-bugbear",         # extra checks for likely bugs
+  "flake8-docstrings",      # checks for docstring style
+  "flake8-import-order",    # enforces import order rules
+  "mypy",
+
+  # Interactive dev
+  "ipython",
+  "jupyterlab",
+  "notebook",
+
+  # Type stubs for static analysis (optional but helpful)
+  "types-PyYAML",
+  "types-setuptools"
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
