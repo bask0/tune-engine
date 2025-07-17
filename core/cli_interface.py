@@ -88,7 +88,7 @@ class CLI(LightningCLI):
         super().add_arguments_to_parser(parser)
 
         # Avoid circular import
-        from engine.tuning_engine import TuningEngine
+        from core.tuning_engine import TuningEngine
 
         # Register the tuning_engine argument block
         parser.add_class_arguments(
@@ -142,7 +142,7 @@ class CLI(LightningCLI):
         super().before_instantiate_classes()
 
         # Avoid circular import
-        from engine.tuning_engine import TuningEngine
+        from core.tuning_engine import TuningEngine
 
         tuner_cfg_raw = self.config["tuning_engine"]
 

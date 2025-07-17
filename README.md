@@ -58,7 +58,7 @@ cd tune-engine
 I recommend using **conda** to install dependencies.
 
 ```bash
-conda env create -f environment.yml
+conda env create -f environment.yaml
 conda activate tuning_engine
 ```
 
@@ -95,7 +95,7 @@ This will:
 ```bash
 .
 ├── tune.py                # Entry point
-├── engine/
+├── core/
 │   ├── cli_interface.py   # Custom LightningCLI wrapper
 │   └── tuning_engine.py   # Core tuning logic
 ├── experiments/           # Experiment configuration
@@ -107,7 +107,7 @@ This will:
 │   └── ...                # Add custom models
 ├── data/                  # Lightning datamodule
 │   └── ...                # Add custom datamodule
-└── environment.yml        # Full conda + pip setup
+└── environment.yaml       # Full conda + pip setup
 log_dir
 ├── tune                   # Hyperparameter tuning log dir
 │   ├── trial_000          # Triel 0 directory.
@@ -129,7 +129,7 @@ Main libraries include:
 - `jsonargparse[signatures]`, `omegaconf`, `tensorboard`  
 - `jupyterlab-optuna`, `matplotlib`, `plotly`, `geopandas`, ...
 
-> See [environment.yml](./environment.yml) for a full list.
+> See [environment.yaml](./environment.yaml) for a full list.
 
 This is just the usual libraries I need; most are not required for the framework.
 
@@ -225,7 +225,7 @@ git clone [URL]
 
 # install project   
 cd [REPO NAME] 
-conda env create -f environment.yml
+conda env create -f environment.yaml
 conda activate [ENV NAME]
 ```
 

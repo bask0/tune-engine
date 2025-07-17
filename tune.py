@@ -1,4 +1,4 @@
-from engine.cli_interface import CLI
+from core.cli_interface import CLI
 
 
 def main():

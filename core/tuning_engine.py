@@ -24,7 +24,7 @@ from typing import TYPE_CHECKING, Literal
 import optuna
 from optuna_integration.pytorch_lightning import PyTorchLightningPruningCallback
 
-from engine.cli_interface import CLI
+from core.cli_interface import CLI
 
 if TYPE_CHECKING:
     from optuna import Trial
