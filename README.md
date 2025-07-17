@@ -36,8 +36,8 @@ This project supports:
 
 This repository is designed to serve as a **blueprint** for hyperparameter tuning pipelines. You are expected to:
 
-- Add your own models under `models/`
-- Implement a custom datamodule under `data/`
+- Add your own models under `project/models/`
+- Implement a custom datamodule under `project/data/`
 - Define your tuning/search configurations under `experiments/`
 
 To get started **and retain compatibility with updates**, please fork the repository.
@@ -93,28 +93,48 @@ This will:
 ## 🧠 Project Structure
 
 ```bash
+# Root of your Git repository
 .
-├── tune.py                # Entry point
-├── core/
-│   ├── cli_interface.py   # Custom LightningCLI wrapper
-│   └── tuning_engine.py   # Core tuning logic
-├── experiments/           # Experiment configuration
-│   ├── base_config.yaml   # Overarching base config
-│   ├── exp0               # An experiment
-│   │   ├── logs/          # (symlinked) logs (`log_dir`)
-│   │   └── config.yaml    # Experiment config
-├── models/                # Lightning models
-│   └── ...                # Add custom models
-├── data/                  # Lightning datamodule
-│   └── ...                # Add custom datamodule
-└── environment.yaml       # Full conda + pip setup
-log_dir
-├── tune                   # Hyperparameter tuning log dir
-│   ├── trial_000          # Triel 0 directory.
-│   └── ...                # Up to trial `tune_engine.n_trials`
-├── xval                   # Cross validation log dir
-│   ├── fold_000           # Fold 0 directory.
-──  └── ...                # Up to fold `data.num_folds`
+├── project/                      # Installable package
+│   ├── __init__.py
+│   ├── core/                     # Core orchestration logic
+│   │   ├── __init__.py
+│   │   ├── cli_interface.py      # Custom LightningCLI wrapper
+│   │   └── tuning_engine.py      # Core tuning and cross-validation logic
+│   ├── models/                   # LightningModule subclasses
+│   │   ├── __init__.py
+│   │   └── ...                   # Add your models here
+│   ├── data/                     # LightningDataModule subclasses
+│   │   ├── __init__.py
+│   │   └── ...                   # Add your data modules here
+│   └── utils/                    # Optional utility functions
+│       ├── __init__.py
+│       └── ...
+├── experiments/                  # Experiment definitions and outputs
+│   ├── base_config.yaml          # Shared Hydra config (defaults)
+│   ├── exp0/                     # One experiment instance
+│   │   ├── config.yaml           # Hydra config for this experiment
+│   │   └── logs/ → /log_dir/exp0 # Symlink to output logs of experiment 0
+│   └── exp1/                     # Another experiment
+│       ├── config.yaml
+│       └── logs/ → /log_dir/exp1
+├── tune.py                       # Entry point to CLI (Hydra or LightningCLI-based)
+├── environment.yaml              # Conda + pip (editable) environment setup
+├── pyproject.toml                # Package and build metadata (PEP 621)
+└── README.md                     # Project overview and usage instructions
+
+# External, system-level directory (not inside the repo)
+/log_dir/exp0/
+├── tune/                        # Hyperparameter tuning log dir
+│   ├── trial_000/               # Trial 0 outputs
+│   ├── trial_001/               # ...
+│   └── optuna.db                # SQLite database for tuning
+├── xval/                        # Cross-validation log dir
+│   ├── fold_000/                # Fold 0 outputs
+│   ├── fold_001/                # ...
+│   └── optuna.db                # SQLite database for xval
+/log_dir/exp1/
+...
 ```
 
 ---
@@ -195,7 +215,7 @@ tuning_engine:
 
 ---
 
-# README
+## README
 
 ⚠️ DELETE EVERYTHING ABOVE FOR YOUR PROJECT ⚠️
 
@@ -224,7 +244,7 @@ First, install dependencies
 git clone [URL]
 
 # install project   
-cd [REPO NAME] 
+cd [REPO NAME]
 conda env create -f environment.yaml
 conda activate [ENV NAME]
 ```

@@ -3,9 +3,12 @@ requires = ["setuptools>=61.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "tune-engine"  # This is the installable package name on PyPI (can have hyphen)
+name = "project"
+# ===> Action needed <=== Change the version if needed
 version = "0.1.0"
+# ===> Action needed <=== Update the description
 description = "A flexible framework for hyperparameter tuning and cross-validation using PyTorch Lightning and Optuna"
+# ===> Action needed <=== Update the authors
 authors = [
   { name = "Basil Kraft", email = "basil.kraft@env.ethz.ch" }
 ]

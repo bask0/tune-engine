@@ -1,10 +1,10 @@
 model:
-  class_path: models.lit_model.LitModel
+  class_path: project.models.lit_model.LitModel
   init_args:
     hidden_size: 32
 
 data:
-  class_path: data.datamodule.MNISTDataModule
+  class_path: project.data.datamodule.MNISTDataModule
   init_args:
     batch_size: 64
     fold_idx: 0

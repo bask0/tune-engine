@@ -24,19 +24,21 @@ Typical usage:
     cli.tuning_engine.xval()  # Run cross-validation.
 """
 
-import lightning.pytorch as pl
-from lightning.pytorch.cli import LightningCLI
-from lightning.pytorch.callbacks import EarlyStopping, ModelCheckpoint
-import optuna
 import importlib
 from typing import Any
+
 from jsonargparse import namespace_to_dict
+
+import lightning.pytorch as pl
+from lightning.pytorch.callbacks import EarlyStopping, ModelCheckpoint
+from lightning.pytorch.cli import LightningCLI
+
+import optuna
 
 
 class CLI(LightningCLI):
     """
-    A custom LightningCLI for configuring and executing model training, hyperparameter tuning,
-    and cross-validation using Optuna and PyTorch Lightning.
+    A custom LightningCLI for configuring and executing model training using Optuna and PyTorch Lightning.
 
     This class wraps around the PyTorch LightningCLI to provide additional argument parsing,
     callback configuration, and dynamic instantiation of tuning-related components such as
@@ -88,7 +90,7 @@ class CLI(LightningCLI):
         super().add_arguments_to_parser(parser)
 
         # Avoid circular import
-        from core.tuning_engine import TuningEngine
+        from project.core.tuning_engine import TuningEngine
 
         # Register the tuning_engine argument block
         parser.add_class_arguments(
@@ -142,7 +144,7 @@ class CLI(LightningCLI):
         super().before_instantiate_classes()
 
         # Avoid circular import
-        from core.tuning_engine import TuningEngine
+        from project.core.tuning_engine import TuningEngine
 
         tuner_cfg_raw = self.config["tuning_engine"]
 
@@ -177,6 +179,7 @@ class CLI(LightningCLI):
         Raises:
             ValueError: If cfg is not a dictionary.
         """
+
         if not isinstance(cfg, dict):
             raise ValueError("Expected dict with keys 'class_path' and optional 'init_args'.")
 
