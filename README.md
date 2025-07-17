@@ -6,9 +6,12 @@
 A modular, CLI-based framework for hyperparameter tuning and cross-validation using [Optuna](https://optuna.org/) and [PyTorch Lightning](https://lightning.ai/).
 
 This project supports:
+
 - Clean experiment tracking via directory structure and logging
 - Configurable search spaces and callbacks
 - Reproducible CLI-driven experiments
+
+⚠️ Delete everything up to and including [README](#readme) when publishing the project. ⚠️
 
 ---
 
@@ -189,3 +192,56 @@ tuning_engine:
 - ⛔ Logs and checkpoints are **not** committed to Git. A symlink (`logs/`) is created from experiment directory to log directory.  
 - ✅ Use `--tuning_engine.overwrite=True` to reset experiments.  
 - 🔁 Parallelism is currently not implemented. It can be handled via `n_jobs` in Optuna, but this would require MySQL or Postgres databases.
+
+---
+
+# README
+
+⚠️ DELETE EVERYTHING ABOVE FOR YOUR PROJECT ⚠️
+
+---
+
+<div align="center">
+
+# Your Project Name
+
+[![Paper](http://img.shields.io/badge/paper-arxiv.1001.2234-B31B1B.svg)](https://www.nature.com/articles/nature14539)
+[![Conference](http://img.shields.io/badge/NeurIPS-2019-4b44ce.svg)](https://papers.nips.cc/book/advances-in-neural-information-processing-systems-31-2018)
+[![Conference](http://img.shields.io/badge/ICLR-2019-4b44ce.svg)](https://papers.nips.cc/book/advances-in-neural-information-processing-systems-31-2018)
+[![Conference](http://img.shields.io/badge/AnyConference-year-4b44ce.svg)](https://papers.nips.cc/book/advances-in-neural-information-processing-systems-31-2018)  
+</div>
+
+## Description
+
+Describe what the project does.
+
+## How to run
+
+First, install dependencies
+
+```bash
+# clone project   
+git clone [URL]
+
+# install project   
+cd [REPO NAME] 
+conda env create -f environment.yml
+conda activate [ENV NAME]
+```
+
+Run hyperparameter tuning and cross validation.
+
+```bash
+python tune.py
+```
+
+### Citation
+
+```text
+@article{Name,
+  title={Paper title},
+  author={Co-authors},
+  journal={Journal},
+  year={Year}
+}
+```
