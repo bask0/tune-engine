@@ -252,7 +252,7 @@ conda activate [ENV NAME]
 Run hyperparameter tuning and cross validation.
 
 ```bash
-python tune.py
+python tune.py -c experiments/base_config.yaml -c experiments/exp1/config.yaml
 ```
 
 ### Citation
