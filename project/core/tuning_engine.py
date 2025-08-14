@@ -210,12 +210,34 @@ class TuningEngine:
                 storage=self._get_storage(db_path=self.tune_db),
             )
 
-        study = self.run(is_tune=True)
+        study = None
 
-        best_trial = study.best_trial
-        best_log_dir = Path(best_trial.user_attrs["log_dir"])
-        best_config_path = best_log_dir / "config.yaml"
-        shutil.copy(best_config_path, self.best_config_path)
+        try:
+            study = self.run(is_tune=True)
+
+        except KeyboardInterrupt:
+            logger.warning("Tuning interrupted by user. Attempting graceful shutdown...")
+
+            try:
+                study = optuna.load_study(
+                    study_name=self.EXPERIMENT_NAME,
+                    storage=self._get_storage(db_path=self.tune_db),
+                )
+            except Exception as e:
+                logger.error("Graceful shutdown failed. Cannot load interrupted tuning results.")
+                raise e
+
+        finally:
+            if study is None:
+                raise ValueError("No study was created or loaded. Cannot proceed with finalizing runing.")
+
+            best_trial = study.best_trial
+            best_log_dir = Path(best_trial.user_attrs["log_dir"])
+            best_config_path = best_log_dir / "config.yaml"
+            shutil.copy(best_config_path, self.best_config_path)
+
+            logger.info(f"Creating summary plots in '{self.tune_dir}'...")
+            plot_optuna_summary(self.tune_db, study_name=self.EXPERIMENT_NAME, is_xval=False)
 
         return study
 
